@@ -1,0 +1,37 @@
+void setup() {
+  size(500,500);
+  background(0,80,51);
+  smooth();
+  fill(219,234,59);
+  ellipse(100,70,60,60);//face
+  fill(10);
+  arc(98,68,40,40,QUARTER_PI,PI+QUARTER_PI);//smile
+  fill(255);
+  ellipse(100,50,20,20);//left eye
+  ellipse(110,70,20,20);//righ eye
+  beginShape();//arrow
+  vertex(180,82);
+  vertex(207,36);
+  vertex(214,63);
+  vertex(407,11);
+  vertex(412,30);
+  vertex(219,82);
+  vertex(226,109);
+  endShape(CLOSE);
+}
+
+void draw() {
+  if(mousePressed) {
+  //background(193,222,31); //issue when mouse is clicked
+  fill(36,222,208,50);
+  stroke(50,0,0,200);
+  //smooth();
+  strokeWeight(9);
+  strokeCap(ROUND);
+  ellipse(mouseX,mouseY,200,200);//issue with rect attached
+  } else{
+  fill(100,0,0,50);
+  stroke(4,40,0,100);
+  }
+  rect(mouseX,mouseY,60, 60);//rect attached to ellipse
+  }
