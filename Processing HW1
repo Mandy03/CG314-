@@ -22,13 +22,13 @@ void setup() {
 
 void draw() {
   if(mousePressed) {
-  //background(193,222,31); //issue when mouse is clicked
+  //background(193,222,31); 
   fill(36,222,208,50);
   stroke(50,0,0,200);
   //smooth();
   strokeWeight(9);
   strokeCap(ROUND);
-  ellipse(mouseX,mouseY,200,200);//issue with rect attached
+  ellipse(mouseX,mouseY,200,200);
   } else{
   fill(100,0,0,50);
   stroke(4,40,0,100);
