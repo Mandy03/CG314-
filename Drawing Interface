@@ -1,0 +1,112 @@
+
+
+int xMin = 40; //  position of the canvas from left
+int xMax = 480; //  position of the canvas from right
+
+int yMin = 40; // position of the canvas from top
+int yMax = 480; // position of the canvas from bottom
+
+int a=80;
+int b=30;
+int w=80;
+int h=60;
+
+
+float x;
+float y;
+float px;
+float py;
+float easing =0.05;
+
+String quote= "Create Here!";
+
+
+void setup() {
+ size(500, 500);
+ background(100);
+ stroke(0);
+ strokeWeight(2);
+ rect(xMin, yMin, width - 2*xMin, height - 2*yMin); // the canvas
+   textSize(64);
+  textAlign(CENTER);
+ fill(0, 102, 153, 204);
+}
+
+
+void draw() {
+ 
+text(quote,250,500);
+ stroke(0);
+ strokeWeight(2);
+ smooth();
+ 
+
+ // Draw when mouse is inside canvas and is pressed
+ if((mouseX > xMin) && (mouseX < xMax)){ 
+   if((mouseY > yMin) && (mouseY < yMax)){
+
+     if (mousePressed) {
+       line(pmouseX, pmouseY, mouseX, mouseY);
+     } else{
+       if (keyPressed) {
+         if((key=='k')  || (key=='K')){
+           text(key,pmouseX,pmouseY);
+           
+         }else{
+       if(keyPressed){
+         if((key=='s')  || (key=='S')){ //easing smooth line
+         float targetX = mouseX;
+         x +=(targetX-x) * easing;
+         float targetY = mouseY;
+         y +=(targetY- y) * easing;
+         float weight = dist(x,y,px,py);
+         strokeWeight(weight);
+         line(x,y,px,py);
+         py=y;
+         px=x;
+         }  
+                  
+       }else{   
+       if (keyPressed) {
+         if ((key=='e') || (key=='E')){  //erase canvas sketch was working but now isn't
+     
+         fill(255);
+         stroke(0);
+         strokeWeight(2);
+         rect(xMin, yMin, width - 2*xMin, height - 2*yMin); 
+         }
+       }else{
+         if (keyPressed){
+           if((key=='c') || (key=='C')){ // color doesnt work
+           line(mouseX,mouseY,pmouseX,pmouseY);
+        fill(0,255,0);
+     }
+           
+       }else{
+         if (keyPressed){
+           if((key=='a') || (key=='A')){ // star doesnt work
+          beginShape();
+          vertex(0, -50);
+          vertex(14, -20);
+          vertex(47, -15);
+          vertex(23, 7);
+          vertex(29, 40);
+          vertex(0, 25);
+          vertex(-29, 40);
+          vertex(-23, 7);
+          vertex(-47, -15);
+          vertex(-14, -20);
+          endShape(CLOSE);
+          } 
+         
+     }
+
+   }
+ }  
+     }
+     }
+
+   }
+   }
+   }
+ }
