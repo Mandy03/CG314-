@@ -1,0 +1,103 @@
+//Amanda Hernandez
+//Mini Draw Pad
+//Processing CG314
+
+int xMin = 40; //  position of the canvas from left
+int xMax = 600; //  position of the canvas from right
+
+int yMin = 90; // position of the canvas from top
+int yMax = 600; // position of the canvas from bottom
+
+float x;
+float y;
+float px;
+float py;
+float easing =0.05;
+
+PImage pencil;
+PImage sparkle;
+PImage abc;
+PImage eraser;
+PImage notepad;
+String quote= "Express Yourself!";
+
+void setup() {
+  size (700, 600);
+  background (100);
+  noStroke ();
+  strokeWeight(2);
+  rect(xMin, yMin, width - 2*xMin, height - 2*yMin); // the canvas
+  textSize(64);
+  textAlign(CENTER);
+
+
+  //image sizes
+  fill(random(100, 255), random(100, 255), 255);
+  textSize (12);
+  text("press 1", 80, 60);
+  notepad= loadImage("notepad.png");
+  textSize (12);
+  text("Press 2", 160, 60);
+  pencil= loadImage("pencil.png");
+  textSize (12);
+  text("Press 3", 228, 60);
+  sparkle = loadImage("sparkle.png");
+  textSize (12);
+  text("Press 4", 314, 60);
+  eraser=loadImage("eraser.png");
+  textSize (12);
+  text("Press keys", 390, 60);
+  abc= loadImage("abc.png");
+
+
+  //actual images
+  image (pencil, 160, -1, 50, 50);
+  image (notepad, 80, 4,50,50);
+  image (sparkle, 228, 44, 65, -38);
+  image(eraser, 314, 0, 50, 50);
+  image(abc,390,4,50,50);
+}
+
+void draw() {
+  //draw rules title
+          text(quote, 350, 580);
+          textSize(54);
+          fill(random(100, 255), random(100, 255), 255);
+  // Draw when mouse is inside canvas and is pressed
+  if ((mouseX > xMin) && (mouseX < xMax)) { 
+    if ((mouseY > yMin) && (mouseY < yMax)) {
+
+      if (keyPressed) {
+        if (key == '1') { // erase canvas
+          fill(255);
+          rect(xMin, yMin, width - 2*xMin, height - 2*yMin);
+          //fill(255);
+          //ellipse(mouseX,mouseY,30,30);
+          //noStroke();
+        } else if (key == '2') { //smooth draw
+       
+          float targetX = mouseX;
+          x +=(targetX-x) * easing;
+          float targetY = mouseY;
+          y +=(targetY- y) * easing;
+          float weight = dist(x, y, px, py);
+          strokeWeight(weight);
+          line(x, y, px, py);
+          py=y;
+          px=x;
+          stroke(1,(random(100,255)), random(100, 255));
+    
+        } else if (key == '3') { // sparkle
+          image (sparkle, mouseX, mouseY, 50, 50);
+        } else if (key=='4') {//eraser
+          fill(255);
+          ellipse(mouseX,mouseY,30,30);
+          noStroke();
+        } else if (keyPressed) {//normal line
+          text(key, pmouseX, pmouseY);
+          fill(0);
+        }
+      }
+    }
+  }
+}
