@@ -1,0 +1,119 @@
+//Amanda Hernandez
+//RobotRobFunctions
+//Homework 6
+
+
+void setup(){
+  size(800,700);
+  smooth();
+}
+  
+  void draw(){
+  //background
+  background(100);
+ 
+  //concert backgound
+  for (int y=0; y<=height; y+=40) {
+  for(int x=0; x<=width; x+=40) {  
+  fill(255);
+  ellipse(x,y,40,40);
+  noStroke();
+  fill(50);
+  
+  //ground
+  rect(0,width/1.8,800,200);//floor
+  rect(0,width/3,800,200);//floor
+  fill(100);
+  rect(0,width/1.3,800,100);//side floor
+  fill(255);
+  
+  //Robot positions
+  randomSeed(0);
+  for(int i=100; i <width +100; i+=100){
+     float scalar= random(0.30,1);
+     robRobot(-i,10,scalar);//left side robots
+     robRobot(i,70,scalar);//right side robots
+  }
+  }
+ }
+}
+  
+  void robRobot(int x,int y,float s){
+    
+    pushMatrix();
+    translate(x,y);
+    scale(s); // various sizes of robs
+    
+  //Robot legs and feet
+  smooth();
+  stroke(0);
+  strokeWeight(4);
+  fill(82,124,114);
+  strokeJoin(BEVEL);
+  stroke(147,234,213);
+  rect(420,430,10,130);//left leg
+  rect(400,540,50,20);//left foot 
+  rect(370,430,10,130);//right leg
+  rect(350,540,50,20);//right foot
+
+  //Robot right arm and shoulder
+  stroke(147,234,213);
+  triangle(370,300,400,160,430,300);//neck
+  triangle(440,270,445,290,480,180);//right arm
+  line(480,180,500,180);//right left finger
+  line(480,180,495,160);//right middle finger
+  line(480,180,480,160);//right second left finger
+  line(480,180,460,160);//right finger
+  ellipse(480,180,20,20);//right hand
+  ellipse(440,280,30,40);//right shoulder
+
+
+  //Robot head and body
+  ellipse(width/2, height/2,100,200);//body
+  strokeWeight(3);
+  stroke(147,234,213);
+  ellipse(340,150,30,40);//left ear
+  ellipse(460,150,30,40);//right ear
+  ellipse(400,150,120,130);//head
+  arc(400,160,80,80,0,radians(180));//smile
+  fill(random(100,240),random(50,200),100);//eye colors
+  ellipse(370,130,30,40);//left eye
+  ellipse(430,130,30,40);//right eye
+  noFill();
+  ellipse(375,130,20,30);//leftpupil
+  ellipse(425,130,20,30);//right pupil
+
+
+  //Robot details
+  rect(400,310,30,30);// heart box
+  line(440,400,360,400);//bottom line on body
+  line(440,100,360,100);//top head line
+  line(440,300,360,300);//top line on body
+  line(440,410,360,410);//second bottom line on body
+  fill(82,124,114);
+  fill(random(0,200),100,200);
+  ellipse(390,300,20,20);//body button
+  stroke(166,242,68);
+  strokeWeight(4);
+  noFill();
+  curve(40,40,440,100,430,60,500,90);//right antenna
+  curve(40,40,360,100,360,60,900,90);//left antenna
+
+  //robot left arm and shoulder
+  fill(82,124,114);
+  strokeWeight(4);
+  stroke(147,234,213);
+  triangle(360,300,300,400,360,260);//left arm
+  ellipse(360,280,30,40);//left shoulder
+  line(300,400,300,420);//right finger
+  line(300,400,290,420);//right middle
+  line(300,400,280,400);//left finger
+  line(300,400,280,413);//left middle
+  ellipse(300,400,20,20);//left hand
+  stroke(147,234,213);
+  strokeWeight(2);
+  ellipse(360,280,15,15);//left shoulder screw
+  popMatrix();
+ 
+  
+}
