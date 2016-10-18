@@ -1,0 +1,249 @@
+//Amanda Hernandez
+//Midterm
+//Processing CG314
+
+float x;
+float y;
+float px;
+float py;
+float easing =0.05;
+
+
+PImage pencil;
+PImage sparkle;
+PImage abc;
+PImage eraser;
+PImage notepad;
+PImage water;
+PImage love;
+PImage Pumpkin;
+PImage Burger;
+
+
+
+boolean canDraw = false;
+int toolList = 0;
+color[] colarray = {
+  color(0), 
+  color(111, 136, 165), 
+  color(250, 146, 245), 
+  color(255, 123, 75), 
+  color(226, 70, 29), 
+  color(139, 123, 139), 
+  color(186, 95, 74), 
+  color(146, 39, 255), 
+  color(16, 255, 0), 
+  color(253, 226, 62)}; 
+int colorSelect = 0;
+
+String quote="Letter Set Design";
+String quote1="click on new sheet";
+String quote2="or click on a letter set to start!";
+
+void setup() {
+  size(800, 600);
+    //image sizes
+  pencil= loadImage("pencil.png");
+  sparkle = loadImage("sparkle.png");
+  eraser=loadImage("eraser.png");
+  abc= loadImage("abc.png");
+  water=loadImage("water.png");
+  love=loadImage("love.png");
+  Pumpkin=loadImage("Pumpkin.png");
+  Burger=loadImage("Burger.png");
+}
+
+
+void draw() {
+  textSize(64);
+  text(quote,100,80);// Title of Game
+  textSize(20);
+  text(quote1,100,100);// Instructions
+  text(quote2,100,120);// Instructions
+  list();
+  colorPicker();
+  controllers();
+  toolBoxSel();
+}
+
+void newCanvas() {
+
+  canDraw = true;
+  fill(255);
+  rect(100, 30, 1600, 890);
+}
+
+void waterSet() {
+  canDraw=true;
+  image(water,100,30,700,570);
+}
+
+void loveSet() {
+  canDraw=true;
+  image(love,100,30,700,570);
+}
+
+void PumpkinSet() {
+  canDraw=true;
+  image(Pumpkin,100,30,700,570);
+}
+
+void BurgerSet() {
+  canDraw=true;
+  image(Burger,100,30,700,570);
+}
+
+void toolBoxSel() {
+
+
+  if (canDraw) {
+    fill(colarray[colorSelect]);
+    if (mousePressed) {
+      if (toolList == 0) { //Draw
+        
+          float targetX = mouseX;
+          x +=(targetX-x) * easing;
+          float targetY = mouseY;
+          y +=(targetY- y) * easing;
+          float weight = dist(x, y, px, py);
+          strokeWeight(weight);
+          line(x, y, px, py);
+          py=y;
+          px=x;
+          stroke(1,(random(100,255)), random(100, 255));
+      }
+      if (toolList == 1) { //erase
+          fill(255);
+          ellipse(mouseX,mouseY,30,30);
+          noStroke();
+      }
+      if (toolList == 2) { //sparkle
+        image (sparkle, mouseX, mouseY, 50, 50);
+      }
+      if (toolList == 3) { //ABC
+          textSize (50);
+          text(key, pmouseX, pmouseY,12);         
+          fill(0);     
+          
+      }
+    }
+  }
+}
+
+
+void controllers() {
+
+  if (mousePressed) {
+
+    //New Canvas
+    if (mouseX > 750 && mouseX < width &&
+      mouseY > 50 && mouseY <height) {
+      newCanvas();
+    } 
+    //Draw
+    else if (mouseX > 5 && mouseX < 100 &&
+      mouseY > 35 && mouseY <125) {
+
+      toolList = 0;
+    }
+    //erase
+    else if (mouseX > 5 && mouseX < 100 &&
+      mouseY > 135 && mouseY <225) {
+      toolList = 1;
+    }
+    //sparkle
+    else if (mouseX > 5 && mouseX < 100 &&
+      mouseY > 235 && mouseY <325) {
+      toolList = 2;
+    }
+    //ABC
+    else if (mouseX > 5 && mouseX < 100 &&
+      mouseY > 335 && mouseY <425) {
+      toolList = 3;
+    }
+    //waterset
+    else if(mouseX > 5 && mouseX < 100 &&
+      mouseY > 435 && mouseY <525) {
+      waterSet();
+  }
+    //loveset
+    else if(mouseX > 5 && mouseX < 100 &&
+      mouseY > 450 && mouseY <530) {
+      loveSet();
+  }
+    //Pumpkinset
+    else if(mouseX > 5 && mouseX < 100 &&
+      mouseY > 480 && mouseY <540) {
+      PumpkinSet();
+  }
+    //Burgerset
+    else if(mouseX > 5 && mouseX < 100 &&
+      mouseY > 490 && mouseY <550) {
+      BurgerSet();
+  }
+}
+}
+
+void colorPicker() {
+  int sxPos = 0;
+  int col;
+
+  for (int i = 0; i<10; i++) {
+    col = color(colarray[i]);
+    fill(col);
+    ellipse(sxPos, 15, 30, 30);
+    if (mousePressed) {
+      if (mouseX >sxPos && mouseX <sxPos+30 && mouseY<30) {
+        colorSelect = i;
+        println(colorSelect);
+      }
+    }
+    sxPos+=40;
+  }
+}
+
+void list() {
+
+  //SideBar
+  fill(0);
+  rect(0, 50, 100, 900);
+
+  //LeftBar
+  fill(64,190,227);
+  int startY = 30;
+  for (int i = 0; i <4; i++) {
+    rect(0, startY, 100, 100);
+    startY+=100;
+  }
+
+  int startY2 = 35;
+  fill(200);
+  for (int i = 0; i <4; i++) {
+    if (toolList == i) fill(#14C4C9);
+    rect(5, startY2, 90, 90);
+    fill(200,180,255);
+    startY2+=100;
+  }
+
+  //LeftBar Icons
+  fill(colarray[colorSelect]);
+  image (pencil, 30, 50, 70, 70);
+  image (sparkle, -5, 320, 110, -80);
+  image(abc, 15, 345, 70, 70);
+  image(eraser,20,150,70,70);
+  image(water,0,430,100,100);
+  image(love,0,460,100,100);
+  image(Pumpkin,0,490,100,100);
+  image(Burger,-5,520,110,100);
+
+  //TopMenu
+  fill(200,180,255);
+  rect(0, 0, 1600, 30);
+
+  //New Canvas Bottom
+  fill(0);
+  rect(700, 30, 100, 30);
+  fill(255);
+  textSize(14);
+  text("New Sheet", 710, 50);
+}
