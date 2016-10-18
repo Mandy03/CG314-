@@ -42,6 +42,14 @@ String quote2="or click on a letter set to start!";
 
 void setup() {
   size(800, 600);
+  
+  //Instructions
+  textSize(64);
+  text(quote,100,80);// Title of Game
+  textSize(20);
+  text(quote1,100,100);// Instructions
+  text(quote2,100,120);// Instructions
+  
     //image sizes
   pencil= loadImage("pencil.png");
   sparkle = loadImage("sparkle.png");
@@ -55,11 +63,7 @@ void setup() {
 
 
 void draw() {
-  textSize(64);
-  text(quote,100,80);// Title of Game
-  textSize(20);
-  text(quote1,100,100);// Instructions
-  text(quote2,100,120);// Instructions
+ 
   list();
   colorPicker();
   controllers();
@@ -181,11 +185,11 @@ void controllers() {
       mouseY > 490 && mouseY <550) {
       BurgerSet();
   }
-}
+ }
 }
 
 void colorPicker() {
-  int sxPos = 0;
+  int sxPos = 200;
   int col;
 
   for (int i = 0; i<10; i++) {
@@ -216,11 +220,11 @@ void list() {
     startY+=100;
   }
 
-  int startY2 = 35;
+  int startY2 = 85;
   fill(200);
   for (int i = 0; i <4; i++) {
     if (toolList == i) fill(#14C4C9);
-    rect(5, startY2, 90, 90);
+    ellipse(50, startY2, 90, 90);
     fill(200,180,255);
     startY2+=100;
   }
@@ -241,7 +245,7 @@ void list() {
   rect(0, 0, 1600, 30);
 
   //New Canvas Bottom
-  fill(0);
+  fill(64,190,227);
   rect(700, 30, 100, 30);
   fill(255);
   textSize(14);
