@@ -72,28 +72,39 @@ void draw() {
 void newCanvas() {
 
   canDraw = true;
+  strokeWeight(10);
+  fill(200,180,255);
+  rect(100, 30, 700, 570);
   fill(255);
-  rect(100, 30, 1600, 890);
+  rect(150, 60, 600, 500);
 }
 
 void waterSet() {
   canDraw=true;
-  image(water,100,30,700,570);
+  fill(200,180,255);
+  rect(100, 30, 700, 570);
+  image(water,150,60,600,500);
 }
 
 void loveSet() {
   canDraw=true;
-  image(love,100,30,700,570);
+  fill(200,180,255);
+  rect(100, 30, 700, 570);
+  image(love,150,60,600,500);
 }
 
 void PumpkinSet() {
   canDraw=true;
-  image(Pumpkin,100,30,700,570);
+  fill(200,180,255);
+  rect(100, 30, 700, 570);
+  image(Pumpkin,150,60,600,500);
 }
 
 void BurgerSet() {
   canDraw=true;
-  image(Burger,100,30,700,570);
+  fill(200,180,255);
+  rect(100, 30, 700, 570);
+  image(Burger,150,60,600,500);
 }
 
 void toolBoxSel() {
@@ -139,8 +150,8 @@ void controllers() {
   if (mousePressed) {
 
     //New Canvas
-    if (mouseX > 750 && mouseX < width &&
-      mouseY > 50 && mouseY <height) {
+    if (mouseX > 740 && mouseX < width &&
+      mouseY > 15 && mouseY <height) {
       newCanvas();
     } 
     //Draw
@@ -218,7 +229,6 @@ void list() {
     rect(0, startY, 100, 100);
     startY+=100;
   }
-
   int startY2 = 85;
   fill(200);
   for (int i = 0; i <4; i++) {
@@ -243,10 +253,10 @@ void list() {
   fill(200,180,255);
   rect(0, 0, 1600, 30);
 
-  //New Canvas top
+  //New Canvas button
   fill(64,190,227);
-  rect(700, 30, 100, 30);
+  ellipse(740, 15, 100, 30);
   fill(255);
   textSize(14);
-  text("New Sheet", 710, 50);
+  text("New Sheet", 705, 20);
 }
