@@ -20,7 +20,6 @@ PImage Pumpkin;
 PImage Burger;
 
 
-
 boolean canDraw = false;
 int toolList = 0;
 color[] colarray = {
@@ -208,11 +207,11 @@ void colorPicker() {
 
 void list() {
 
-  //SideBar
+  //Stamps bar
   fill(0);
   rect(0, 50, 100, 900);
 
-  //LeftBar
+  //stamp buttons
   fill(64,190,227);
   int startY = 30;
   for (int i = 0; i <4; i++) {
@@ -229,7 +228,7 @@ void list() {
     startY2+=100;
   }
 
-  //LeftBar Icons
+  //Stamp Icons
   fill(colarray[colorSelect]);
   image (pencil, 30, 50, 70, 70);
   image (sparkle, -5, 320, 110, -80);
@@ -240,11 +239,11 @@ void list() {
   image(Pumpkin,0,490,100,100);
   image(Burger,-5,520,110,100);
 
-  //TopMenu
+  //top center window
   fill(200,180,255);
   rect(0, 0, 1600, 30);
 
-  //New Canvas Bottom
+  //New Canvas top
   fill(64,190,227);
   rect(700, 30, 100, 30);
   fill(255);
