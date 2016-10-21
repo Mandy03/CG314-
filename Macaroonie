@@ -1,0 +1,65 @@
+//Amanda Hernandez
+//Functions Project
+//Macaroon
+//Week 7 Homework
+
+
+//For some reason the size code in setup wont work
+
+PImage Macaroon;
+
+//Macaroon labels
+MacRoon Roon; 
+MacRoon Roon2;
+
+
+void setup(){
+  //size(500,500);
+  background(0);
+  smooth();
+  Macaroon= loadImage("Macaroon.png");
+
+  //Macaroons
+  Roon= new MacRoon(width/2,height/2,50);
+  Roon2= new MacRoon (width/6, height/1.3,30);
+}
+
+void draw(){
+  
+  //Actions
+  Roon.move();
+  Roon2.slide();
+  Roon.display();
+  Roon2.display();
+}
+
+class MacRoon {
+  float x;
+  float y;
+  int diameter;
+  float speed = .5;
+
+  MacRoon(float tempX, float tempY, int tempDiameter) {
+    x = tempX;
+    y = tempY;
+   diameter= tempDiameter;
+  }
+
+  void move() {
+     background(0);
+    x+=random (-speed, +speed);
+    y+=random (-speed, +speed);
+  }
+
+  void slide(){
+       x+=2;
+    if (x>width+diameter ) {
+      x=-diameter;
+    }
+    }
+    
+    
+  void display() {
+   image(Macaroon,x,y,diameter,diameter);
+}
+}
