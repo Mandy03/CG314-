@@ -1,0 +1,38 @@
+PImage Macaroon;
+
+//Macaroon label
+MacRoon Roon; 
+
+//Cupcake label
+Cupcake cupcake;
+
+//IceCream label
+Frosty frosty;
+
+
+
+  void setup(){
+  size(700,600);
+  background(0);
+  smooth();
+  Macaroon= loadImage("Macaroon.png");
+
+  //Macaroons
+  Roon= new MacRoon(width/2,height/2,50);
+  cupcake= new Cupcake(width/6, height/1.3,50);
+  frosty= new Frosty(width/2,height/2);
+}
+
+
+void draw(){
+  
+  //Action
+  cupcake.hover();
+  frosty.hover();
+  Roon.hover();
+  //Display
+  Roon.display();
+  cupcake.display ();
+  frosty.display();
+  
+}
