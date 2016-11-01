@@ -52,8 +52,8 @@ String quote3="*Tip from Clip* !!!To type press the ABC button! Hold down a key 
 String quote4="Created by: Amanda Hernandez";
 
 //Music
-//import processing.sound.*;
-//SoundFile file;
+import processing.sound.*;
+SoundFile file;
 
 //Intro Zoom
 float myScale=+00.00000002;
@@ -80,15 +80,15 @@ void setup() {
   paperclip2=loadImage("paperclip2.png");
   
   //Music
-  // file = new SoundFile(this,"music_box.mp3");
-   //file.loop();
+   file = new SoundFile(this,"music_box.mp3");
+   file.loop();
 }
 
 
 void draw() {
-  //if(millis() > 5000){
-  //file.stop();
-  //}
+  if(millis() > 5000){
+  file.stop();
+  }
 
   fill(200, 180, 255);
   smooth();
