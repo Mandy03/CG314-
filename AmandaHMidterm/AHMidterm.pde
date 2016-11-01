@@ -1,5 +1,6 @@
 //Amanda Hernandez
 //Midterm
+//Letter Set Design
 //Processing CG314
 
 float x;
